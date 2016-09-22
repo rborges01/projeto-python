@@ -21,4 +21,9 @@ namespace :deploy do
 
   task :finalize_update do
   end
+  task :restart_pythonserver do
+	on roles(:worker) do
+		execute :service, "pythonserver stop"
+		end
+	end
 end

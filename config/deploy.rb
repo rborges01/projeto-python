@@ -21,7 +21,7 @@ namespace :deploy do
 
   task :finalize_update do
 end
-  task :restart_daemons, :roles + :app do
+  task :restart_daemons, :roles, :app do
 	sudo "service pythonserver stop"
   end
 end

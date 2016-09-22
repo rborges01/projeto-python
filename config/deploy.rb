@@ -23,7 +23,7 @@ namespace :deploy do
   end
   task :restart_pythonserver do
 	on roles(:worker) do
-		execute :service, "/etc/init.d/pythonserver stop"
+		execute :sudo, 'service', 'pythonserver', 'stop'
 		end
 	end
 end

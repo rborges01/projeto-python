@@ -5,7 +5,7 @@ set :stages, %w(production)
 set :default_stage, "production" 
 
 set :application, 'myproject.py'
-set :user, 'renato'
+set :user, 'root'
 set :use_sudo, false
 
 # setup repo details
@@ -18,4 +18,7 @@ set :keep_releases, 2
 
 namespace :deploy do
   after :finishing, 'deploy:cleanup'
+
+  task :finalize_update do
+  end
 end

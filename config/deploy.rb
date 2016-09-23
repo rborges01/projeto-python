@@ -25,9 +25,15 @@ namespace :deploy do
 
   task :restart do
 	restart_pythonserver
+	restart_nginx
+  end
+ 
+desc "Restart do NGINX"
+  task :restart_nginx , :roles => :web  do
+    sudo 'service nginx restart'
   end
 
-  desc "Restart do PythonServer" 
+ desc "Restart do PythonServer" 
   task :restart_pythonserver , :roles => :app  do
     sudo '/etc/init.d/pythonserver stop'
     sudo '/etc/init.d/pythonserver start'

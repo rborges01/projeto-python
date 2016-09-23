@@ -17,13 +17,19 @@ set :deploy_to, "/root/myproject/"
 set :keep_releases, 2
 
 namespace :deploy do
+
   after :finishing, 'deploy:cleanup'
 
   task :finalize_update do
   end
-  task :restart_pythonserver do
-	on roles(:worker) do
-		execute :sudo, 'service', 'pythonserver', 'stop'
-		end
-	end
+
+  task :restart do
+	restart_pythonserver
+  end
+
+  desc "Restart do PythonServer" 
+  task :restart_pythonserver , :roles => :app  do
+    sudo '/etc/init.d/pythonserver stop'
+    sudo '/etc/init.d/pythonserver start'
+  end
 end
